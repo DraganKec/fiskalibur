@@ -1,0 +1,69 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema Fiskalibur
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `fiskalibur` DEFAULT CHARACTER SET utf8 ;
+USE `fiskalibur` ;
+
+CREATE TABLE IF NOT EXISTS `fiskalibur`.`kasa` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `broj_kase` VARCHAR(45) CHARACTER SET 'utf8' NULL DEFAULT NULL,
+  `komitent_id` INT(11) NULL DEFAULT 0,
+  `broj_modula` VARCHAR(45) CHARACTER SET 'utf8' NULL DEFAULT NULL,
+  `broj_terminala` VARCHAR(45) CHARACTER SET 'utf8' NULL DEFAULT NULL,
+  `sim_kartica` VARCHAR(45) CHARACTER SET 'utf8' NULL DEFAULT NULL,
+  `pin` INT(5) NULL DEFAULT 0,
+  `telefon` VARCHAR(45) CHARACTER SET 'utf8' NULL DEFAULT NULL,
+  `adresa_instaliranja` VARCHAR(45) CHARACTER SET 'utf8' NULL DEFAULT NULL,
+  `model_id` INT(5) NULL DEFAULT 0,
+  `defiskalicacija` TINYINT(1) NULL DEFAULT false,
+  `datum_defiskalizacije` VARCHAR(45) CHARACTER SET 'utf8' NULL DEFAULT NULL,
+  `opis` VARCHAR(45) CHARACTER SET 'utf8' NULL DEFAULT NULL,
+  
+  PRIMARY KEY (`id`))  
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8
+  COLLATE = utf8_unicode_ci; 
+  
+  CREATE TABLE IF NOT EXISTS `quiz`.`questions` (
+  `questionid` INT(11) NOT NULL AUTO_INCREMENT,
+  `categoryid` INT(11) NOT NULL DEFAULT 0,
+  `question` VARCHAR(99) CHARACTER SET 'utf8' NULL DEFAULT NULL,
+  
+  PRIMARY KEY (`questionid`))  
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8
+  COLLATE = utf8_unicode_ci; 
+  
+  CREATE TABLE IF NOT EXISTS `quiz`.`answer` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `questionid` INT (11) NOT NULL DEFAULT 0,
+  `answer` VARCHAR(99) CHARACTER SET 'utf8' NULL DEFAULT NULL,
+  `correct_answer` TINYINT(1) NULL DEFAULT false,
+  
+  PRIMARY KEY (`id`))  
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8
+  COLLATE = utf8_unicode_ci;
+  
+  CREATE TABLE IF NOT EXISTS `quiz`.`category` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `category_name` VARCHAR(99) CHARACTER SET 'utf8' NULL DEFAULT NULL,
+  
+  PRIMARY KEY (`id`))  
+  ENGINE = InnoDB
+  AUTO_INCREMENT = 3
+  DEFAULT CHARACTER SET = utf8
+  COLLATE = utf8_unicode_ci;
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
