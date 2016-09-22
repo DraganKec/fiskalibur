@@ -8,7 +8,6 @@ public class FiskaliburApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FiskaliburApplication.class, args);
-		System.out.println("ksdjfhksjdhfl");
 	}
 
 }
