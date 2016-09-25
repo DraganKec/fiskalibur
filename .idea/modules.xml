@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fiskalibur.iml" filepath="$PROJECT_DIR$/.idea/modules/fiskalibur.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fiskalibur_main.iml" filepath="$PROJECT_DIR$/.idea/modules/fiskalibur_main.iml" group="fiskalibur" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/fiskalibur_test.iml" filepath="$PROJECT_DIR$/.idea/modules/fiskalibur_test.iml" group="fiskalibur" />
     </modules>
   </component>
 </project>

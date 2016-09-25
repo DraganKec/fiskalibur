@@ -3,8 +3,13 @@ package org.fiskalibur.servis.imp;
 import org.fiskalibur.model.Kasa;
 import org.fiskalibur.repository.KasaRepository;
 import org.fiskalibur.servis.KasaService;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
 
+@Component
+@Transactional
 public class KasaServiceImpl implements KasaService {
 
     @Resource

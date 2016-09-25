@@ -3,8 +3,13 @@ package org.fiskalibur.servis.imp;
 import org.fiskalibur.model.Komitent;
 import org.fiskalibur.repository.KomitentRepository;
 import org.fiskalibur.servis.KomitentService;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
 
+@Component
+@Transactional
 public class KomitentServiceImpl implements KomitentService {
 
     @Resource
