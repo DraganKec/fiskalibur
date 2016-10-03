@@ -29,4 +29,9 @@ public class KomitentServiceImpl implements KomitentService {
     public Iterable<Komitent> getAllKomitents() {
         return komitentRepository.findAll();
     }
+
+    @Override
+    public void deleteKom(int id) {
+        komitentRepository.delete(id);
+    }
 }

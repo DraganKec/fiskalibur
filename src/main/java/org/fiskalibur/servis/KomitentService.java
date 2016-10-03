@@ -6,8 +6,10 @@ public interface KomitentService {
 
     Komitent saveKomitent(Komitent komitent);
 
-    Komitent getKomitent (int id);
+    Komitent getKomitent(int id);
 
     Iterable<Komitent> getAllKomitents();
+
+    void deleteKom (int id);
 
 }

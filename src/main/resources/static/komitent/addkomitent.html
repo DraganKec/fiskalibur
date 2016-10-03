@@ -1,0 +1,42 @@
+<form name="addKomitentForm">
+<div>
+    <h2>Dodaj novog komitenta</h2>
+    <input type="text"
+           value=""
+           ng-model="komitent.nazivKomitenta"
+           required
+           placeholder="Naziv komitenta">
+    <br>
+    <input type="text"
+           value=""
+           ng-model="komitent.telefon"
+           placeholder="Telefon">
+    <br>
+    <input type="text"
+           value=""
+           ng-model="komitent.adresa"
+           placeholder="Adresa">
+    <br>
+    <input type="text"
+           value=""
+           ng-model="komitent.brojUgovora"
+           placeholder="Broj ugovora">
+    <br>
+    <input type="number"
+           value=""
+           ng-model="komitent.jib"
+           ng-maxlength="13"
+           placeholder="JIB">
+    <br>
+    <input type="number"
+           value=""
+           ng-model="komitent.pib"
+           ng-maxlength="12"
+           placeholder="PIB">
+    <br>
+    <input type="submit"
+           value="Snimi"
+           ng-click="saveKomitent(komitent)"
+           ng-disabled="addKomitentForm.$invalid">
+</div>
+</form>

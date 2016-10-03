@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Radni Nalog app</title>
+    <title>Fiskalibur</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-route.js"></script>
+    <script src="app.js"></script>
+    <link href="css_style.css" rel="stylesheet"/>
 </head>
-<body>
-Test
+<body ng-app="myApp">
+<div>
+    <h1>Fiskalibur</h1>
+</div>
+<div>
+    <ul>
+        <li><a href="#/addKomitent">Dodaj komitenta</a></li>
+        <li><a href="#/allKomitents">Svi komitenti</a></li>
+
+    </ul>
+</div>
+<div ng-view></div>
 </body>
 </html>
