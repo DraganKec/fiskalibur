@@ -11,6 +11,10 @@ angular.module('myApp', ['ngRoute'])
                 templateUrl: 'komitent/allkomitents.html',
                 controller: 'komCtrl'
             })
+            .when('/oneKomitent', {
+                templateUrl: 'komitent/komitent.html',
+                controller: 'komCtrl'
+            })
             .otherwise({redirectTo: '/'});
     })
     .controller('komCtrl', ['$scope', '$http', function ($scope, $http) {

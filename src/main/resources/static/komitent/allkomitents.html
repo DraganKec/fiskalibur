@@ -16,13 +16,13 @@
         <tbody>
         <tr ng-repeat="komitent in allKomitent | filter:search">
             <td>{{komitent.id}}</td>
-            <td>{{komitent.nazivKomitenta}}</td>
+            <td><a ng-href="#/oneKomitent" ng-click="getOneKomitent(komitent.id)">{{komitent.nazivKomitenta}}</a></td>
             <td>{{komitent.telefon}}</td>
             <td>{{komitent.adresa}}</td>
             <td>{{komitent.jib}}</td>
             <td>{{komitent.pib}}</td>
             <td>
-                <input type="button" value="X" ng-click="deleteKomitent(komitent.id)">
+                <input type="button" value="&#10006" ng-click="deleteKomitent(komitent.id)">
             </td>
         </tr>
         </tbody>
@@ -39,7 +39,7 @@
         <tbody>
         <tr ng-repeat="per in person |  filter:search">
             <td>{{per.id}}</td>
-            <td>{{per.firstName}}</td>
+            <td><a href="#/oneKomitent">{{per.firstName}}</a> </td>
             <td>{{per.lastName}}</td>
             <td>
                 <input type="button" value="&#10006" ng-click="deleteKomitent(per.id)">
@@ -47,5 +47,4 @@
         </tr>
         </tbody>
     </table>
-
 </div>
