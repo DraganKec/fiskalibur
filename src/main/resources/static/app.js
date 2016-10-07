@@ -17,7 +17,8 @@ angular.module('myApp', ['ngRoute'])
             })
             .otherwise({redirectTo: '/'});
     })
-    .controller('komCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('komCtrl', ['$scope', '$http', 'komService', function ($scope, $http, komService) {
+        $scope.komId = komService.get();
 
         $scope.saveKomitent = function (komitent) {
             return $http({
@@ -64,9 +65,30 @@ angular.module('myApp', ['ngRoute'])
             });
         };
 
+        $scope.setKomitentId = function (id) {
+            komService.set(id);
+        };
+
         $scope.person = [
             {id: 0, firstName: "John", lastName: "Doe"},
             {id: 1, firstName: "Anna", lastName: "Smith"},
             {id: 2, firstName: "Peter", lastName: "Jones"}
         ];
-    }]);
+    }])
+    .factory('komService', function () {
+        var komitentId;
+
+        function set(id) {
+            komitentId = id;
+        }
+
+        function get() {
+            return komitentId;
+        }
+
+        return {
+            set: set,
+            get: get
+        }
+
+    });

@@ -36,4 +36,10 @@ public class PageController {
     public Komitent getKomitent(@RequestBody int id) {
        return komitentService.getKomitent(id);
     }
+
+    @RequestMapping("/test")
+    public Komitent test() {
+        Komitent komitent = komitentService.getKomitent(7);
+        return komitentService.getKomitent(2);
+    }
 }
