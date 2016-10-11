@@ -16,7 +16,7 @@
         <tbody>
         <tr ng-repeat="komitent in allKomitent | filter:search">
             <td>{{komitent.id}}</td>
-            <!--<td><a ng-href="#/oneKomitent" ng-click="getOneKomitent()">{{komitent.nazivKomitenta}}</a></td>-->
+            <td><a ng-href="#/oneKomitent" ng-click="getOneKomitent(komitent.id)">{{komitent.nazivKomitenta}}</a></td>
 
             <td>{{komitent.telefon}}</td>
             <td>{{komitent.adresa}}</td>
@@ -31,7 +31,7 @@
     </table>
 
 
-    <table>
+   <!-- <table>
 
         <tr>
             <th>ID</th>
@@ -48,5 +48,5 @@
             </td>
         </tr>
         </tbody>
-    </table>
+    </table>-->
 </div>
