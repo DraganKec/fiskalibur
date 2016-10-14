@@ -1,11 +1,41 @@
-<div>
-<h1>{{oneKomitent.nazivKomitenta}}</h1>
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Komitent: {{komitent.nazivKomitenta}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    #
+                </div>
+                <div class="panel-body">
 
-    <br>
-    <div>
-        <h4>Adresa: {{oneKomitent.adresa}}</h4>
-        <h4>JIB: {{oneKomitent.jib}}</h4>
-        <h4>PIB: {{oneKomitent.pib}}</h4>
-        <h4>Telefon: {{oneKomitent.telefon}}</h4>
+                    <div>
+                        <h3>
+                            <small>Adresa:</small>
+                            {{komitent.adresa}}
+                        </h3>
+                        <h3>
+                            <small>JIB:</small>
+                            {{komitent.jib}}
+                        </h3>
+                        <h3>
+                            <small>PIB:</small>
+                            {{komitent.pib}}
+                        </h3>
+                        <h3>
+                            <small>Telefon:</small>
+                            {{komitent.telefon}}
+                        </h3>
+                    </div>
+                    <input type="button" class="btn btn-default" value="test" ng-click="getKomitent()">
+                </div>
+                <div class="panel-footer">
+                    Kase:
+                </div>
+            </div>
+        </div>
     </div>
 </div>

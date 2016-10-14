@@ -1,52 +1,59 @@
-<div>
-    <input type="text"
-           name="search"
-           ng-model="search"
-           placeholder="Pretraga">
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Naziv komitenta</th>
-            <th>Telefon</th>
-            <th>Adresa</th>
-            <th>JIB</th>
-            <th>PIB</th>
-            <th>Opcije</th>
-        </tr>
-        <tbody>
-        <tr ng-repeat="komitent in allKomitent | filter:search">
-            <td>{{komitent.id}}</td>
-            <td><a ng-href="#/oneKomitent" ng-click="getOneKomitent(komitent.id)">{{komitent.nazivKomitenta}}</a></td>
-
-            <td>{{komitent.telefon}}</td>
-            <td>{{komitent.adresa}}</td>
-            <td>{{komitent.jib}}</td>
-            <td>{{komitent.pib}}</td>
-            <td>
-                <input type="button" value="&#10006" ng-click="deleteKomitent(komitent.id)">
-                <input type="button" value="Test" ng-click="getOneKomitent(komitent.id)">
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-
-   <!-- <table>
-
-        <tr>
-            <th>ID</th>
-            <th>First name</th>
-            <th>Second name</th>
-        </tr>
-        <tbody>
-        <tr ng-repeat="per in person |  filter:search">
-            <td>{{per.id}}</td>
-            <td><a href="#/oneKomitent" ng-click="setKomitentId(per.id)">{{per.firstName}}</a> </td>
-            <td>{{per.lastName}}</td>
-            <td>
-                <input type="button" value="&#10006" ng-click="deleteKomitent(per.id)">
-            </td>
-        </tr>
-        </tbody>
-    </table>-->
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Lista svih komitenata</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    #
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="col-xs-3 col-sm-3">
+                        <input class="form-control"
+                               name="searchBox"
+                               ng-model="searchBox"
+                               placeholder="Pretraga">
+                    </div>
+                    <br>
+                    <br>
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Naziv komitenta</th>
+                            <th>Adresa</th>
+                            <th>Telefon</th>
+                            <th>JIB</th>
+                            <th>PIB</th>
+                            <th>Opcije</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="odd gradeX"  ng-repeat="komitent in allKomitent | filter: searchBox">
+                            <td>{{komitent.id}}</td>
+                            <td><a ng-href="#/Komitent" ng-click="setKomitentId(komitent.id)">{{komitent.nazivKomitenta}}</a></td>
+                            <td>{{komitent.telefon}}</td>
+                            <td>{{komitent.adresa}}</td>
+                            <td>{{komitent.jib}}</td>
+                            <td>{{komitent.pib}}</td>
+                            <td>
+                                <input type="button" class="btn btn-default" value="&#10006" ng-click="deleteKomitent(komitent.id)">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
 </div>

@@ -5,19 +5,19 @@ angular.module('myApp', ['ngRoute'])
         $routeProvider.when('/', {})
             .when('/addKomitent', {
                 templateUrl: 'komitent/addkomitent.html',
-                controller: 'komCtrl'
+                controller: 'addKomitentCtrl'
             })
             .when('/allKomitents', {
                 templateUrl: 'komitent/allkomitents.html',
-                controller: 'komCtrl'
+                controller: 'allKomitentsCtrl'
             })
-            .when('/oneKomitent', {
+            .when('/Komitent', {
                 templateUrl: 'komitent/komitent.html',
-                controller: 'komCtrl'
+                controller: 'komitentCtrl'
             })
             .otherwise({redirectTo: '/'});
     })
-    .controller('komCtrl', ['$scope', '$http', 'komService', function ($scope, $http, komService) {
+    .controller('addKomitentCtrl', ['$scope', '$http', function ($scope, $http) {
 
         $scope.saveKomitent = function (komitent) {
             return $http({
@@ -29,6 +29,12 @@ angular.module('myApp', ['ngRoute'])
             }, function () {
                 return {statusCode: 500};
             });
+        };
+    }])
+    .controller('allKomitentsCtrl', ['$scope', '$http', 'komService', function ($scope, $http, komService) {
+
+        $scope.setKomitentId = function (id) {
+            komService.set(id);
         };
 
         $http({
@@ -51,32 +57,24 @@ angular.module('myApp', ['ngRoute'])
                 return {statusCode: 500};
             });
         };
+    }])
+    .controller('komitentCtrl', ['$scope', '$http', 'komService', function ($scope, $http, komService) {
 
-        var getOneKomitent = function (id) {
+        var id = komService.get();
+
+        $scope.getKomitent = function () {
             return $http({
                 method: 'POST',
                 url: '/getOneKomitent',
-                data: id
+                data: id = komService.get()
             }).then(function (result) {
-                $scope.oneKomitent = result.data;
+                $scope.komitent = result.data;
             }, function () {
                 return {statusCode: 500};
             });
         };
 
-        $scope.setKomitentId = function (id) {
-            komService.set(id);
-        };
 
-        getOneKomitent(8);
-
-        $scope.person = [
-            {id: 0, firstName: "John", lastName: "Doe"},
-            {id: 1, firstName: "Anna", lastName: "Smith"},
-            {id: 2, firstName: "Peter", lastName: "Jones"}
-        ];
-
-        //$scope.getOneKomitent(komId);
     }])
     .factory('komService', function () {
         var komitentId;
@@ -93,5 +91,4 @@ angular.module('myApp', ['ngRoute'])
             set: set,
             get: get
         }
-
     });
