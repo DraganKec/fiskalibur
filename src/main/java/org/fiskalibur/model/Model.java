@@ -1,8 +1,10 @@
 package org.fiskalibur.model;
 
-import java.util.Set;
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "model")
@@ -20,6 +22,7 @@ public class Model {
 	private String opis;
 
 	@OneToMany(mappedBy = "model", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Set<Kasa> kasa;
 
 	public int getId() {

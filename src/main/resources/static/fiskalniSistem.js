@@ -11,6 +11,10 @@ angular.module('myApp', ['ngRoute'])
                 templateUrl: 'komitent/allkomitents.html',
                 controller: 'allKomitentsCtrl'
             })
+            .when('/allKasa', {
+                templateUrl: 'kasa/allkasa.html',
+                controller: 'allKasaCtrl'
+            })
             .when('/Komitent', {
                 templateUrl: 'komitent/komitent.html',
                 controller: 'komitentCtrl'
@@ -58,22 +62,29 @@ angular.module('myApp', ['ngRoute'])
             });
         };
     }])
+    .controller('allKasaCtrl', ['$scope', '$http', function($scope, $http){
+
+        $http({
+            method: "GET",
+            url: "/getAllKasa"
+        }).then(function mySucces(response) {
+            $scope.allKasa = response.data;
+        }, function myError(response) {
+            $scope.allKasa = response.statusText;
+        });
+    }])
     .controller('komitentCtrl', ['$scope', '$http', 'komService', function ($scope, $http, komService) {
 
         var id = komService.get();
-
-        $scope.getKomitent = function () {
-            return $http({
-                method: 'POST',
-                url: '/getOneKomitent',
-                data: id = komService.get()
-            }).then(function (result) {
-                $scope.komitent = result.data;
-            }, function () {
-                return {statusCode: 500};
-            });
-        };
-
+        $http({
+            method: 'POST',
+            url: '/getOneKomitent',
+            data: id
+        }).then(function mySucces(response) {
+            $scope.komitent = response.data;
+        }, function myError(response) {
+            $scope.komitent = response.statusText;
+        });
 
     }])
     .factory('komService', function () {
