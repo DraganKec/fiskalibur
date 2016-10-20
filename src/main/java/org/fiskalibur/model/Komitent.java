@@ -11,91 +11,100 @@ import java.util.Set;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Komitent {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private int id;
 
-	@Column(name = "naziv_komitenta")
-	private String nazivKomitenta;
+    @Column(name = "naziv_komitenta")
+    private String nazivKomitenta;
 
-	private String telefon;
+    private String telefon;
 
-	private String adresa;
+    private String adresa;
 
-	@Column(name = "broj_ugovora")
-	private String brojUgovora;
+    @Column(name = "broj_ugovora")
+    private String brojUgovora;
 
-	private String jib;
+    private String jib;
 
-	private String pib;
+    private String pib;
 
-	@OneToMany(mappedBy = "komitent", cascade = CascadeType.ALL)
-	@JsonIgnore
-	private Set<Kasa> kasa;
+    private String napomena;
 
-	public int getId() {
-		return id;
-	}
+    @OneToMany(mappedBy = "komitent", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<Kasa> kasa;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getNazivKomitenta() {
-		return nazivKomitenta;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setNazivKomitenta(String nazivKomitenta) {
-		this.nazivKomitenta = nazivKomitenta;
-	}
+    public String getNazivKomitenta() {
+        return nazivKomitenta;
+    }
 
-	public String getTelefon() {
-		return telefon;
-	}
+    public void setNazivKomitenta(String nazivKomitenta) {
+        this.nazivKomitenta = nazivKomitenta;
+    }
 
-	public void setTelefon(String telefon) {
-		this.telefon = telefon;
-	}
+    public String getTelefon() {
+        return telefon;
+    }
 
-	public String getAdresa() {
-		return adresa;
-	}
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
+    }
 
-	public void setAdresa(String adresa) {
-		this.adresa = adresa;
-	}
+    public String getAdresa() {
+        return adresa;
+    }
 
-	public String getBrojUgovora() {
-		return brojUgovora;
-	}
+    public void setAdresa(String adresa) {
+        this.adresa = adresa;
+    }
 
-	public void setBrojUgovora(String brojUgovora) {
-		this.brojUgovora = brojUgovora;
-	}
+    public String getBrojUgovora() {
+        return brojUgovora;
+    }
 
-	public String getJib() {
-		return jib;
-	}
+    public void setBrojUgovora(String brojUgovora) {
+        this.brojUgovora = brojUgovora;
+    }
 
-	public void setJib(String jib) {
-		this.jib = jib;
-	}
+    public String getJib() {
+        return jib;
+    }
 
-	public String getPib() {
-		return pib;
-	}
+    public void setJib(String jib) {
+        this.jib = jib;
+    }
 
-	public void setPib(String pib) {
-		this.pib = pib;
-	}
+    public String getPib() {
+        return pib;
+    }
 
-	public Set<Kasa> getKasa() {
-		return kasa;
-	}
+    public void setPib(String pib) {
+        this.pib = pib;
+    }
 
-	public void setKasa(Set<Kasa> kasa) {
-		this.kasa = kasa;
-	}
+    public Set<Kasa> getKasa() {
+        return kasa;
+    }
 
+    public void setKasa(Set<Kasa> kasa) {
+        this.kasa = kasa;
+    }
+
+    public String getNapomena() {
+        return napomena;
+    }
+
+    public void setNapomena(String napomena) {
+        this.napomena = napomena;
+    }
 }

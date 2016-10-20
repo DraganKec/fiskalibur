@@ -15,6 +15,10 @@ angular.module('myApp', ['ngRoute'])
                 templateUrl: 'kasa/allkasa.html',
                 controller: 'allKasaCtrl'
             })
+            .when('/addKasa', {
+                templateUrl: 'kasa/addkasa.html',
+                controller: 'addKasaCtrl'
+            })
             .when('/Komitent', {
                 templateUrl: 'komitent/komitent.html',
                 controller: 'komitentCtrl'
@@ -62,7 +66,7 @@ angular.module('myApp', ['ngRoute'])
             });
         };
     }])
-    .controller('allKasaCtrl', ['$scope', '$http', function($scope, $http){
+    .controller('allKasaCtrl', ['$scope', '$http', function ($scope, $http) {
 
         $http({
             method: "GET",
@@ -71,6 +75,29 @@ angular.module('myApp', ['ngRoute'])
             $scope.allKasa = response.data;
         }, function myError(response) {
             $scope.allKasa = response.statusText;
+        });
+    }])
+    .controller('addKasaCtrl', ['$scope', '$http', function ($scope, $http) {
+
+        $scope.saveKasa = function (kasa) {
+            return $http({
+                method: 'POST',
+                url: '/saveKasa',
+                data: kasa
+            }).then(function (result) {
+                return result.data;
+            }, function () {
+                return {statusCode: 500};
+            });
+        };
+
+        $http({
+            method: "GET",
+            url: "/getAllModels"
+        }).then(function mySucces(response) {
+            $scope.allModels = response.data;
+        }, function myError(response) {
+            $scope.allModels = response.statusText;
         });
     }])
     .controller('komitentCtrl', ['$scope', '$http', 'komService', function ($scope, $http, komService) {

@@ -8,31 +8,27 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     #
                 </div>
                 <div class="panel-body">
-
-                    <div>
-
-                        <h4>
-                            <small>Adresa:</small>
-                            {{komitent.adresa}}
-                        </h4>
-                        <h4>
-                            <small>JIB:</small>
-                            {{komitent.jib}}
-                        </h4>
-                        <h4>
-                            <small>PIB:</small>
-                            {{komitent.pib}}
-                        </h4>
-                        <h4>
-                            <small>Telefon:</small>
-                            {{komitent.telefon}}
-                        </h4>
+                    <div class="row show-grid">
+                        <div class="col-md-4">Adresa</div>
+                        <div class="col-md-8">{{komitent.adresa}}</div>
+                    </div>
+                    <div class="row show-grid">
+                        <div class="col-md-4">JIB</div>
+                        <div class="col-md-8">{{komitent.jib}}</div>
+                    </div>
+                    <div class="row show-grid">
+                        <div class="col-md-4">PIB</div>
+                        <div class="col-md-8">{{komitent.pib}}</div>
+                    </div>
+                    <div class="row show-grid">
+                        <div class="col-md-4">Telefon</div>
+                        <div class="col-md-8">{{komitent.telefon}}</div>
                     </div>
                 </div>
                 <div class="panel-footer">

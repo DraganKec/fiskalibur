@@ -3,6 +3,7 @@ package org.fiskalibur.controller;
 import org.fiskalibur.model.Kasa;
 import org.fiskalibur.servis.KasaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,5 +23,14 @@ public class KasaController {
     @RequestMapping("/getAllKasa")
     public Iterable<Kasa> GetAllKasa() {
         return kasaService.getAll();
+    }
+
+    @RequestMapping("/saveKasa")
+    public void saveKasa (@RequestBody Kasa kasa){
+        kasaService.saveKasa(kasa);
+    }
+    @RequestMapping("/testKasa")
+    public void testKasa(){
+
     }
 }
