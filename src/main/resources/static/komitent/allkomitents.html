@@ -37,7 +37,7 @@
                         <tbody>
                         <tr class="odd gradeX"  ng-repeat="komitent in allKomitent | filter: searchBox">
                             <td>{{komitent.id}}</td>
-                            <td><a ng-href="#/Komitent" ng-click="setKomitentId(komitent.id)">{{komitent.nazivKomitenta}}</a></td>
+                            <td><a ng-href="#/Komitent/{{komitent.id}}">{{komitent.nazivKomitenta}}</a></td>
                             <td>{{komitent.telefon}}</td>
                             <td>{{komitent.adresa}}</td>
                             <td>{{komitent.jib}}</td>

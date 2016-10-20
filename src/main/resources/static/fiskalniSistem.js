@@ -19,7 +19,7 @@ angular.module('myApp', ['ngRoute'])
                 templateUrl: 'kasa/addkasa.html',
                 controller: 'addKasaCtrl'
             })
-            .when('/Komitent', {
+            .when('/Komitent/:id', {
                 templateUrl: 'komitent/komitent.html',
                 controller: 'komitentCtrl'
             })
@@ -39,11 +39,7 @@ angular.module('myApp', ['ngRoute'])
             });
         };
     }])
-    .controller('allKomitentsCtrl', ['$scope', '$http', 'komService', function ($scope, $http, komService) {
-
-        $scope.setKomitentId = function (id) {
-            komService.set(id);
-        };
+    .controller('allKomitentsCtrl', ['$scope', '$http', function ($scope, $http) {
 
         $http({
             method: "GET",
@@ -100,9 +96,10 @@ angular.module('myApp', ['ngRoute'])
             $scope.allModels = response.statusText;
         });
     }])
-    .controller('komitentCtrl', ['$scope', '$http', 'komService', function ($scope, $http, komService) {
+    .controller('komitentCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
 
-        var id = komService.get();
+        var id = $routeParams.id;
+
         $http({
             method: 'POST',
             url: '/getOneKomitent',
@@ -113,20 +110,4 @@ angular.module('myApp', ['ngRoute'])
             $scope.komitent = response.statusText;
         });
 
-    }])
-    .factory('komService', function () {
-        var komitentId;
-
-        function set(id) {
-            komitentId = id;
-        }
-
-        function get() {
-            return komitentId;
-        }
-
-        return {
-            set: set,
-            get: get
-        }
-    });
+    }]);
