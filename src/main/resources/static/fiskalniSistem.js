@@ -85,7 +85,7 @@ angular.module('myApp', ['ngRoute'])
             $scope.allKasa = response.statusText;
         });
     }])
-    .controller('addKasaCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('addKasaCtrl', ['$scope', '$http', 'modelService', function ($scope, $http, modelService) {
 
         $scope.saveKasa = function (kasa) {
             return $http({
@@ -99,19 +99,18 @@ angular.module('myApp', ['ngRoute'])
             });
         };
 
-        $http({
-            method: "GET",
-            url: "/getAllModels"
-        }).then(function (response) {
-            $scope.allModels = response.data;
-        }, function (response) {
-            $scope.allModels = response.statusText;
+        modelService.getAllModel().then(function (data) {
+            $scope.allModels = data;
         });
     }])
-    .controller('kasaCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+    .controller('kasaCtrl', ['$scope', '$http', '$routeParams', 'modelService', function ($scope, $http, $routeParams, modelService) {
 
 
         var id = $routeParams.id;
+
+        modelService.getAllModel().then(function (data) {
+            $scope.allModels = data;
+        });
 
         $scope.saveKasa = function (kasa) {
             return $http({
@@ -153,32 +152,20 @@ angular.module('myApp', ['ngRoute'])
     }])
     .controller('addModelCtrl', ['$scope', '$http', '$routeParams', 'modelService', function ($scope, $http, $routeParams, modelService) {
 
+
+        $scope.addModel = function(model){
+            modelService.saveModel(model);
+        };
+
         var id = $routeParams.id;
 
         if (id !== 'undefine') {
 
-            $http({
-                method: 'POST',
-                url: '/getModel',
-                data: id
-            }).then(function (response) {
-                $scope.model = response.data;
-            }, function (response) {
-                $scope.model = response.statusText;
+            modelService.getModel(id).then(function (data) {
+                $scope.model = data;
             });
-        }
 
-        $scope.saveModel = function (model) {
-            return $http({
-                method: 'POST',
-                url: '/saveModel',
-                data: model
-            }).then(function (result) {
-                return result.data;
-            }, function () {
-                return {statusCode: 500};
-            });
-        };
+        }
     }])
     .controller('allModelCtrl', ['$scope', '$http', 'modelService', function ($scope, $http, modelService) {
 
@@ -206,6 +193,15 @@ angular.module('myApp', ['ngRoute'])
                 }).then(function (result) {
                     return result.data;
                 })
+            },
+            getModel: function(id){
+                return $http({
+                    method: "POST",
+                    url: "/getModel",
+                    data: id
+                }).then(function (response) {
+                    return response.data;
+                });
             }
         }
     });
