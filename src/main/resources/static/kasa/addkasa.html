@@ -37,26 +37,26 @@
                                            ng-model="kasa.simKartica">
                                 </div>
                                 <div class="form-group">
-                                    <label>Sim kartica</label>
-                                    <input class="form-control"
-                                           ng-model="kasa.simKartica">
-                                </div>
-                                <div class="form-group">
                                     <label>Pin</label>
                                     <input class="form-control"
                                            ng-model="kasa.pin">
+                                </div>
+                                <div class="form-group">
+                                    <label>Adresa instaliranja</label>
+                                    <input class="form-control"
+                                           ng-model="kasa.adresaInstaliranja">
                                 </div>
                             </div>
                             <div class="col-lg-6">
 
                                 <div class="form-group">
-                                    <label>Sim kartica</label>
+                                    <label>Telefon</label>
                                     <input class="form-control"
-                                           ng-model="kasa.simKartica">
+                                           ng-model="kasa.telefon">
                                 </div>
                                 <div class="form-group">
                                     <label>Model</label>
-                                    <select class="form-control" ng-model="kasa.model" >
+                                    <select class="form-control" ng-model="kasa.model.id" >
                                         <option ng-repeat="model in allModels" value="{{model.id}}">{{model.nazivModela}}</option>
                                     </select>
                                 </div>

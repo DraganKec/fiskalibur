@@ -110,7 +110,20 @@ angular.module('myApp', ['ngRoute'])
     }])
     .controller('kasaCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
 
+
         var id = $routeParams.id;
+
+        $scope.saveKasa = function (kasa) {
+            return $http({
+                method: 'POST',
+                url: '/saveKasa',
+                data: kasa
+            }).then(function (result) {
+                return result.data;
+            }, function () {
+                return {statusCode: 500};
+            });
+        };
 
         $http({
             method: 'POST',
@@ -138,7 +151,7 @@ angular.module('myApp', ['ngRoute'])
         });
 
     }])
-    .controller('addModelCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
+    .controller('addModelCtrl', ['$scope', '$http', '$routeParams', 'modelService', function ($scope, $http, $routeParams, modelService) {
 
         var id = $routeParams.id;
 
@@ -167,14 +180,32 @@ angular.module('myApp', ['ngRoute'])
             });
         };
     }])
-    .controller('allModelCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('allModelCtrl', ['$scope', '$http', 'modelService', function ($scope, $http, modelService) {
 
-        $http({
-            method: "GET",
-            url: "/getAllModels"
-        }).then(function (response) {
-            $scope.allModels = response.data;
-        }, function (response) {
-            $scope.allModels = response.statusText;
+        modelService.getAllModel().then(function (data) {
+            $scope.allModels = data;
         });
-    }]);
+
+    }])
+    .factory('modelService', function ($http) {
+
+        return {
+            getAllModel: function () {
+                return $http({
+                    method: "GET",
+                    url: "/getAllModels"
+                }).then(function (response) {
+                    return response.data;
+                });
+            },
+            saveModel: function (model) {
+                return $http({
+                    method: 'POST',
+                    url: '/saveModel',
+                    data: model
+                }).then(function (result) {
+                    return result.data;
+                })
+            }
+        }
+    });
