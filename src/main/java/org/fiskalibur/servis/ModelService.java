@@ -8,4 +8,6 @@ public interface ModelService {
 
     Iterable<Model> getAllModels ();
 
+    Model getModel(int id);
+
 }

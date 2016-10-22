@@ -26,11 +26,17 @@ public class KasaController {
     }
 
     @RequestMapping("/saveKasa")
-    public void saveKasa (@RequestBody Kasa kasa){
+    public void saveKasa(@RequestBody Kasa kasa) {
         kasaService.saveKasa(kasa);
     }
+
+    @RequestMapping("/getKasa")
+    public Kasa getKasa(@RequestBody int id) {
+        return kasaService.getKasa(id);
+    }
+
     @RequestMapping("/testKasa")
-    public void testKasa(){
+    public void testKasa() {
 
     }
 }

@@ -3,6 +3,7 @@ package org.fiskalibur.controller;
 import org.fiskalibur.model.Model;
 import org.fiskalibur.servis.ModelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,5 +20,14 @@ public class ModelController {
     @RequestMapping("/getAllModels")
     public Iterable<Model> getAllModels() {
         return modelService.getAllModels();
+    }
+
+    @RequestMapping("/saveModel")
+    public void saveModel (@RequestBody Model model){
+        modelService.saveModel(model);
+    }
+    @RequestMapping("/getModel")
+    public Model getModel(@RequestBody int id){
+        return modelService.getModel(id);
     }
 }

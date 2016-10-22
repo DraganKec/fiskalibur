@@ -24,4 +24,9 @@ public class ModelServiceImpl implements ModelService {
     public Iterable<Model> getAllModels() {
         return modelRepository.findAll();
     }
+
+    @Override
+    public Model getModel(int id) {
+        return modelRepository.findOne(id);
+    }
 }

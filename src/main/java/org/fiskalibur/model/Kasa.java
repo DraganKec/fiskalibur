@@ -10,159 +10,169 @@ import java.util.Set;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Kasa {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private int id;
 
-	@Column(name = "broj_kase")
-	private String brojKase;
+    @Column(name = "broj_kase")
+    private String brojKase;
 
-	@ManyToOne
-	@JoinColumn(name = "komitent_id")
-	private Komitent komitent;
+    @ManyToOne
+    @JoinColumn(name = "komitent_id")
+    private Komitent komitent;
 
-	@Column(name = "broj_modula")
-	private String brojModula;
+    @Column(name = "broj_modula")
+    private String brojModula;
 
-	@Column(name = "broj_terminala")
-	private String brojTerminala;
+    @Column(name = "broj_terminala")
+    private String brojTerminala;
 
-	@Column(name = "sim_kartica")
-	private String simKartica;
+    @Column(name = "sim_kartica")
+    private String simKartica;
 
-	private int pin;
+    private int pin;
 
-	private String telefon;
+    private String telefon;
 
-	@Column(name = "adresa_instaliranja")
-	private String adresaInstaliranja;
+    @Column(name = "adresa_instaliranja")
+    private String adresaInstaliranja;
 
-	@ManyToOne
-	@JoinColumn(name = "model_id")
-	private Model model;
+    @ManyToOne
+    @JoinColumn(name = "model_id")
+    private Model model;
 
-	private boolean defiskalicacija;
+    private boolean defiskalicacija;
 
-	@Column(name = "datum_defiskalizacije")
-	private String datumDefiskalizacije;
+    @Column(name = "datum_defiskalizacije")
+    private String datumDefiskalizacije;
 
-	private String opis;
-
-	@OneToMany(mappedBy = "kasa", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "kasa", cascade = CascadeType.ALL)
     @JsonIgnore
-	private Set<Servis> servis;
+    private Set<Servis> servis;
 
-	public int getId() {
-		return id;
-	}
+    @Column(name = "datum_fiskalizacije")
+    private String datumFiskalizacije;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    private String napomena;
 
-	public String getBrojKase() {
-		return brojKase;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setBrojKase(String brojKase) {
-		this.brojKase = brojKase;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getBrojModula() {
-		return brojModula;
-	}
+    public String getBrojKase() {
+        return brojKase;
+    }
 
-	public void setBrojModula(String brojModula) {
-		this.brojModula = brojModula;
-	}
+    public void setBrojKase(String brojKase) {
+        this.brojKase = brojKase;
+    }
 
-	public String getBrojTerminala() {
-		return brojTerminala;
-	}
+    public Komitent getKomitent() {
+        return komitent;
+    }
 
-	public void setBrojTerminala(String brojTerminala) {
-		this.brojTerminala = brojTerminala;
-	}
+    public void setKomitent(Komitent komitent) {
+        this.komitent = komitent;
+    }
 
-	public String getSimKartica() {
-		return simKartica;
-	}
+    public String getBrojModula() {
+        return brojModula;
+    }
 
-	public void setSimKartica(String simKartica) {
-		this.simKartica = simKartica;
-	}
+    public void setBrojModula(String brojModula) {
+        this.brojModula = brojModula;
+    }
 
-	public int getPin() {
-		return pin;
-	}
+    public String getBrojTerminala() {
+        return brojTerminala;
+    }
 
-	public void setPin(int pin) {
-		this.pin = pin;
-	}
+    public void setBrojTerminala(String brojTerminala) {
+        this.brojTerminala = brojTerminala;
+    }
 
-	public String getTelefon() {
-		return telefon;
-	}
+    public String getSimKartica() {
+        return simKartica;
+    }
 
-	public void setTelefon(String telefon) {
-		this.telefon = telefon;
-	}
+    public void setSimKartica(String simKartica) {
+        this.simKartica = simKartica;
+    }
 
-	public String getAdresaInstaliranja() {
-		return adresaInstaliranja;
-	}
+    public int getPin() {
+        return pin;
+    }
 
-	public void setAdresaInstaliranja(String adresaInstaliranja) {
-		this.adresaInstaliranja = adresaInstaliranja;
-	}
+    public void setPin(int pin) {
+        this.pin = pin;
+    }
 
-	public boolean isDefiskalicacija() {
-		return defiskalicacija;
-	}
+    public String getTelefon() {
+        return telefon;
+    }
 
-	public void setDefiskalicacija(boolean defiskalicacija) {
-		this.defiskalicacija = defiskalicacija;
-	}
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
+    }
 
-	public String getDatumDefiskalizacije() {
-		return datumDefiskalizacije;
-	}
+    public String getAdresaInstaliranja() {
+        return adresaInstaliranja;
+    }
 
-	public void setDatumDefiskalizacije(String datumDefiskalizacije) {
-		this.datumDefiskalizacije = datumDefiskalizacije;
-	}
+    public void setAdresaInstaliranja(String adresaInstaliranja) {
+        this.adresaInstaliranja = adresaInstaliranja;
+    }
 
-	public String getOpis() {
-		return opis;
-	}
+    public Model getModel() {
+        return model;
+    }
 
-	public void setOpis(String opis) {
-		this.opis = opis;
-	}
+    public void setModel(Model model) {
+        this.model = model;
+    }
 
-	public Set<Servis> getServis() {
-		return servis;
-	}
+    public boolean isDefiskalicacija() {
+        return defiskalicacija;
+    }
 
-	public void setServis(Set<Servis> servis) {
-		this.servis = servis;
-	}
+    public void setDefiskalicacija(boolean defiskalicacija) {
+        this.defiskalicacija = defiskalicacija;
+    }
 
-	public Komitent getKomitent() {
-		return komitent;
-	}
+    public String getDatumDefiskalizacije() {
+        return datumDefiskalizacije;
+    }
 
-	public void setKomitent(Komitent komitent) {
-		this.komitent = komitent;
-	}
+    public void setDatumDefiskalizacije(String datumDefiskalizacije) {
+        this.datumDefiskalizacije = datumDefiskalizacije;
+    }
 
-	public Model getModel() {
-		return model;
-	}
+    public String getNapomena() {
+        return napomena;
+    }
 
-	public void setModel(Model model) {
-		this.model = model;
-	}
+    public void setNapomena(String napomena) {
+        this.napomena = napomena;
+    }
 
+    public Set<Servis> getServis() {
+        return servis;
+    }
+
+    public void setServis(Set<Servis> servis) {
+        this.servis = servis;
+    }
+
+    public String getDatumFiskalizacije() {
+        return datumFiskalizacije;
+    }
+
+    public void setDatumFiskalizacije(String datumFiskalizacije) {
+        this.datumFiskalizacije = datumFiskalizacije;
+    }
 }

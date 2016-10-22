@@ -38,7 +38,7 @@
                         <tbody>
                         <tr class="odd gradeX"  ng-repeat="kasa in allKasa | filter: searchBox">
                             <td>{{kasa.id}}</td>
-                            <td><a ng-href="#/Komitent" ng-click="setKomitentId(komitent.id)">{{kasa.brojKase}}</a></td>
+                            <td><a ng-href="#/kasa/{{kasa.id}}">{{kasa.brojKase}}</a></td>
                             <td>{{kasa.komitent.nazivKomitenta}}</td>
                             <td>{{kasa.brojModula}}</td>
                             <td>{{kasa.brojTerminala}}</td>
