@@ -36,6 +36,15 @@ public class Komitent {
     @JsonIgnore
     private Set<Kasa> kasa;
 
+    public Komitent (){
+
+    }
+
+    public Komitent(int id, String nazivKomitenta){
+        this.id = id;
+        this.nazivKomitenta = nazivKomitenta;
+    }
+
     public int getId() {
         return id;
     }

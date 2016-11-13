@@ -34,4 +34,9 @@ public class KomitentServiceImpl implements KomitentService {
     public void deleteKom(int id) {
         komitentRepository.delete(id);
     }
+
+    @Override
+    public Iterable<Komitent> getNazivKomitenta() {
+        return komitentRepository.getNazivKomitenta();
+    }
 }

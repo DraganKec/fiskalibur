@@ -12,4 +12,6 @@ public interface KomitentService {
 
     void deleteKom (int id);
 
+    Iterable<Komitent> getNazivKomitenta ();
+
 }

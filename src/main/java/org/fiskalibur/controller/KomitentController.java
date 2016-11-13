@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class PageController {
+public class KomitentController {
 
     private KomitentService komitentService;
 
     @Autowired
-    public PageController(KomitentService komitentService) {
+    public KomitentController(KomitentService komitentService) {
         this.komitentService = komitentService;
     }
 
@@ -35,6 +35,11 @@ public class PageController {
     @RequestMapping("/getOneKomitent")
     public Komitent getKomitent(@RequestBody int id) {
        return komitentService.getKomitent(id);
+    }
+
+    @RequestMapping("/getNazivKomitenta")
+    public Iterable<Komitent> getNazivKomitenta() {
+        return komitentService.getNazivKomitenta();
     }
 
     @RequestMapping("/test")

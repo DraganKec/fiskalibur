@@ -46,18 +46,29 @@
                                     <input class="form-control"
                                            ng-model="kasa.adresaInstaliranja">
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-
                                 <div class="form-group">
                                     <label>Telefon</label>
                                     <input class="form-control"
                                            ng-model="kasa.telefon">
                                 </div>
+                            </div>
+                            <div class="col-lg-6">
+
+                                <div class="form-group">
+                                    <label>Komitent</label>
+                                    <select class="form-control" ng-model="kasa.komitent">
+                                        <option ng-repeat="komitent in nazivKomitenta" value="{{komitent.id}}">
+                                            {{komitent.nazivKomitenta}}
+                                        </option>
+                                    </select>
+                                </div>
+
                                 <div class="form-group">
                                     <label>Model</label>
-                                    <select class="form-control" ng-model="kasa.model.id" >
-                                        <option ng-repeat="model in allModels" value="{{model.id}}">{{model.nazivModela}}</option>
+                                    <select class="form-control" ng-model="kasa.model.id">
+                                        <option ng-repeat="model in allModels" value="{{model.id}}">
+                                            {{model.nazivModela}}
+                                        </option>
                                     </select>
                                 </div>
                                 <div class="form-group">

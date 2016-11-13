@@ -37,143 +37,102 @@ angular.module('myApp', ['ngRoute'])
             })
             .otherwise({redirectTo: '/'});
     })
-    .controller('addKomitentCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('addKomitentCtrl', ['$scope', '$http', 'komitentService',
+        function ($scope, $http, komitentService) {
 
-        $scope.saveKomitent = function (komitent) {
-            return $http({
-                method: 'POST',
-                url: '/saveKomitent',
-                data: komitent
-            }).then(function (result) {
-                return result.data;
-            }, function () {
-                return {statusCode: 500};
+            $scope.saveKomitent = function (komitent) {
+                komitentService.saveKomitent(komitent);
+            };
+
+        }])
+    .controller('allKomitentsCtrl', ['$scope', '$http', 'komitentService',
+        function ($scope, $http, komitentService) {
+
+            komitentService.getAllKomitent().then(function (data) {
+                $scope.allKomitent = data;
             });
-        };
-    }])
-    .controller('allKomitentsCtrl', ['$scope', '$http', function ($scope, $http) {
+            $scope.deleteKomitent = function (id) {
+                komitentService.deleteKomitent(id);
+            };
+        }])
+    .controller('allKasaCtrl', ['$scope', '$http',
+        function ($scope, $http) {
 
-        $http({
-            method: "GET",
-            url: "/getAllKomitents"
-        }).then(function (response) {
-            $scope.allKomitent = response.data;
-        }, function (response) {
-            $scope.allKomitent = response.statusText;
-        });
-
-        $scope.deleteKomitent = function (id) {
-            return $http({
-                method: 'POST',
-                url: '/deleteKomitent',
-                data: id
-            }).then(function (result) {
-                return result.data;
-            }, function () {
-                return {statusCode: 500};
+            $http({
+                method: "GET",
+                url: "/getAllKasa"
+            }).then(function (response) {
+                $scope.allKasa = response.data;
+            }, function (response) {
+                $scope.allKasa = response.statusText;
             });
-        };
-    }])
-    .controller('allKasaCtrl', ['$scope', '$http', function ($scope, $http) {
+        }])
+    .controller('addKasaCtrl', ['$scope', '$http', 'modelService', 'kasaService', 'komitentService',
+        function ($scope, $http, modelService, kasaService, komitentService) {
 
-        $http({
-            method: "GET",
-            url: "/getAllKasa"
-        }).then(function (response) {
-            $scope.allKasa = response.data;
-        }, function (response) {
-            $scope.allKasa = response.statusText;
-        });
-    }])
-    .controller('addKasaCtrl', ['$scope', '$http', 'modelService', function ($scope, $http, modelService) {
+            $scope.saveKasa = function (kasa) {
+                kasaService.saveKasa(kasa);
+            };
 
-        $scope.saveKasa = function (kasa) {
-            return $http({
-                method: 'POST',
-                url: '/saveKasa',
-                data: kasa
-            }).then(function (result) {
-                return result.data;
-            }, function () {
-                return {statusCode: 500};
-            });
-        };
-
-        modelService.getAllModel().then(function (data) {
-            $scope.allModels = data;
-        });
-    }])
-    .controller('kasaCtrl', ['$scope', '$http', '$routeParams', 'modelService', function ($scope, $http, $routeParams, modelService) {
-
-
-        var id = $routeParams.id;
-
-        modelService.getAllModel().then(function (data) {
-            $scope.allModels = data;
-        });
-
-        $scope.saveKasa = function (kasa) {
-            return $http({
-                method: 'POST',
-                url: '/saveKasa',
-                data: kasa
-            }).then(function (result) {
-                return result.data;
-            }, function () {
-                return {statusCode: 500};
-            });
-        };
-
-        $http({
-            method: 'POST',
-            url: '/getKasa',
-            data: id
-        }).then(function (response) {
-            $scope.kasa = response.data;
-        }, function (response) {
-            $scope.kasa = response.statusText;
-        });
-
-    }])
-    .controller('komitentCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
-
-        var id = $routeParams.id;
-
-        $http({
-            method: 'POST',
-            url: '/getOneKomitent',
-            data: id
-        }).then(function (response) {
-            $scope.komitent = response.data;
-        }, function (response) {
-            $scope.komitent = response.statusText;
-        });
-
-    }])
-    .controller('addModelCtrl', ['$scope', '$http', '$routeParams', 'modelService', function ($scope, $http, $routeParams, modelService) {
-
-
-        $scope.addModel = function(model){
-            modelService.saveModel(model);
-        };
-
-        var id = $routeParams.id;
-
-        if (id !== 'undefine') {
-
-            modelService.getModel(id).then(function (data) {
-                $scope.model = data;
+            modelService.getAllModel().then(function (data) {
+                $scope.allModels = data;
             });
 
-        }
-    }])
-    .controller('allModelCtrl', ['$scope', '$http', 'modelService', function ($scope, $http, modelService) {
+            komitentService.getNazivKomitenta().then(function (data) {
+                $scope.nazivKomitenta = data;
+            });
+        }])
+    .controller('kasaCtrl', ['$scope', '$http', '$routeParams', 'modelService', 'kasaService',
+        function ($scope, $http, $routeParams, modelService, kasaService) {
 
-        modelService.getAllModel().then(function (data) {
-            $scope.allModels = data;
-        });
+            var id = $routeParams.id;
 
-    }])
+            modelService.getAllModel().then(function (data) {
+                $scope.allModels = data;
+            });
+
+            $scope.saveKasa = function (kasa) {
+                kasaService.saveKasa(kasa);
+            };
+
+            kasaService.getKasa(id).then(function (data) {
+                $scope.kasa = data;
+            });
+        }])
+    .controller('komitentCtrl', ['$scope', '$http', '$routeParams', 'komitentService',
+        function ($scope, $http, $routeParams, komitentService) {
+
+            var id = $routeParams.id;
+
+            komitentService.getKomitent(id).then(function (data) {
+                $scope.komitent = data;
+            });
+
+        }])
+    .controller('addModelCtrl', ['$scope', '$http', '$routeParams', 'modelService',
+        function ($scope, $http, $routeParams, modelService) {
+
+            var id = $routeParams.id;
+
+            if (id !== 'undefine') {
+                modelService.getModel(id).then(function (data) {
+                    $scope.model = data;
+                });
+            }
+
+            $scope.addModel = function (model) {
+                modelService.saveModel(model);
+            };
+
+        }])
+    .controller('allModelCtrl', ['$scope', '$http', 'modelService',
+        function ($scope, $http, modelService) {
+
+            modelService.getAllModel().then(function (data) {
+                $scope.allModels = data;
+            });
+
+        }])
     .factory('modelService', function ($http) {
 
         return {
@@ -194,7 +153,7 @@ angular.module('myApp', ['ngRoute'])
                     return result.data;
                 })
             },
-            getModel: function(id){
+            getModel: function (id) {
                 return $http({
                     method: "POST",
                     url: "/getModel",
@@ -204,4 +163,93 @@ angular.module('myApp', ['ngRoute'])
                 });
             }
         }
+    })
+    .factory('komitentService', function ($http) {
+
+        return {
+            getAllKomitent: function () {
+                return $http({
+                    method: "GET",
+                    url: "/getAllKomitents"
+                }).then(function (response) {
+                    return response.data;
+                });
+            },
+            getNazivKomitenta: function () {
+                return $http({
+                    method: "GET",
+                    url: "/getNazivKomitenta"
+                }).then(function (response) {
+                    return response.data;
+                });
+            },
+            saveKomitent: function (komitent) {
+                return $http({
+                    method: 'POST',
+                    url: '/saveKomitent',
+                    data: komitent
+                }).then(function (result) {
+                    return result.data;
+                })
+            },
+            deleteKomitent: function (id) {
+                return $http({
+                    method: 'POST',
+                    url: '/deleteKomitent',
+                    data: id
+                }).then(function (result) {
+                    return result.data;
+                });
+            },
+            getKomitent: function (id) {
+                return $http({
+                    method: 'POST',
+                    url: '/getOneKomitent',
+                    data: id
+                }).then(function (response) {
+                    return response.data;
+                });
+            }
+        }
+    })
+    .factory('kasaService', function ($http) {
+
+        return {
+            getAllKasa: function () {
+                return $http({
+                    method: "GET",
+                    url: "/getAllKasa"
+                }).then(function (response) {
+                    return response.data;
+                });
+            },
+            saveKasa: function (kasa) {
+                return $http({
+                    method: 'POST',
+                    url: '/saveKasa',
+                    data: kasa
+                }).then(function (result) {
+                    return result.data;
+                });
+            },
+            getKasa: function (id) {
+                return $http({
+                    method: 'POST',
+                    url: '/getKasa',
+                    data: id
+                }).then(function (response) {
+                    return response.data;
+                });
+            },
+            deleteKasa: function (id) {
+                return $http({
+                    method: 'POST',
+                    url: '/deleteKasa',
+                    data: id
+                }).then(function (result) {
+                    return result.data;
+                });
+            }
+        }
+
     });

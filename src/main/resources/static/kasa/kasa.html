@@ -52,14 +52,22 @@
                                            ng-model="kasa.pin"
                                            value="{{kasa.pin}}">
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-
                                 <div class="form-group">
                                     <label>Sim kartica</label>
                                     <input class="form-control"
                                            ng-model="kasa.simKartica"
                                            value="{{kasa.simKartica}}">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Komitent</label>
+                                    <select class="form-control" ng-model="kasa.komitent">
+                                        <option ng-repeat="komitent in nazivKomitenta" value="{{komitent.id}}">
+                                            {{komitent.nazivKomitenta}}
+                                        </option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Model</label>
